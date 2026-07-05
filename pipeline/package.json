@@ -1,0 +1,30 @@
+{
+  "name": "nigeria-maritime-pipeline",
+  "version": "1.0.0",
+  "description": "SAR image acquisition, preprocessing, and YOLO vessel detection pipeline",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/pipeline.ts",
+    "detect": "bun run src/pipeline.ts",
+    "seed": "bun run src/database/seed-ports.ts",
+    "scheduler": "bun run src/scheduler.ts",
+    "backfill": "bun run src/backfill.ts",
+    "backfill:week": "bun run src/backfill.ts --days 7",
+    "backfill:month": "bun run src/backfill.ts --days 30",
+    "backfill:dry": "bun run src/backfill.ts --dry-run --days 14",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@turf/turf": "^7.1.0",
+    "dotenv": "^16.4.7",
+    "geotiff": "^2.1.3",
+    "onnxruntime-node": "^1.21.0",
+    "pg": "^8.13.1",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.10",
+    "typescript": "^5.7.0",
+    "@types/node": "^22.10.0"
+  }
+}

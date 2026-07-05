@@ -1,0 +1,26 @@
+# Nigeria Maritime Intelligence Platform
+# Local development: PostGIS database only
+# Backend + Dashboard run via Bun dev server
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: maritime-intel-db
+    environment:
+      POSTGRES_DB: maritime_intel
+      POSTGRES_USER: maritime
+      POSTGRES_PASSWORD: maritime_secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U maritime -d maritime_intel"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
