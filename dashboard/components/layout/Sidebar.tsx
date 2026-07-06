@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
@@ -25,8 +26,8 @@ const NAV_ITEMS = [
         icon: (
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
-            <path d="M9 3L9 18" />
-            <path d="M15 6L15 21" />
+            <line x1="9" y1="3" x2="9" y2="18" />
+            <line x1="15" y1="6" x2="15" y2="21" />
           </svg>
         ),
       },
@@ -60,7 +61,7 @@ const NAV_ITEMS = [
         icon: (
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <circle cx="12" cy="5" r="3" />
-            <path d="M12 8L12 22" />
+            <line x1="12" y1="8" x2="12" y2="22" />
             <path d="M5 15H2a10 10 0 0 0 20 0h-3" />
           </svg>
         ),
@@ -114,26 +115,9 @@ export default function Sidebar() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-          {/* Brand mark — green gradient badge */}
-          <div
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: 8,
-              background: "linear-gradient(135deg, var(--green-400) 0%, var(--green-600) 100%)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-              boxShadow: "0 1px 4px rgba(27,94,59,0.35), inset 0 1px 0 rgba(255,255,255,0.15)",
-            }}
-          >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.95)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <circle cx="12" cy="5" r="3" />
-              <path d="M12 8L12 22" />
-              <path d="M5 15H2a10 10 0 0 0 20 0h-3" />
-            </svg>
-          </div>
+          {/* Brand mark — green gradient hexagon feel */}
+          <Image src="/logo1.png" alt="Logo" width={32} height={32} />
+
           <div>
             <div
               style={{
@@ -193,20 +177,9 @@ export default function Sidebar() {
           borderTop: "1px solid var(--border)",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          <div
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: "50%",
-              background: "var(--green-400)",
-              boxShadow: "0 0 0 2px rgba(42,122,80,0.2)",
-              flexShrink: 0,
-            }}
-          />
-          <span style={{ fontSize: 11, fontWeight: 500, color: "var(--green-500)", letterSpacing: "0.04em" }}>
-            18 passes · 6 ports live
-          </span>
+        <div className="live-badge" style={{ display: "inline-flex" }}>
+          <span className="live-dot" aria-hidden="true" />
+          System online
         </div>
         <div
           style={{
